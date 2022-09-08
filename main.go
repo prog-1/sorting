@@ -17,8 +17,27 @@ func bubblesort(s []int) {
 
 }
 
-func insertionsort(s []int) {
+func insertionSort(s []int) {
+	// +++ ---
+	//     i
+	// jjj
+	//         3
+	// 1 2 3 4 5
+	//     j   i
 
+	for i := 1; i < len(s); i++ {
+		j := 0
+		for ; s[j] < s[i]; j++ {
+
+		}
+		if j < i {
+			temp := s[i]
+			for k := i; k > j; k-- {
+				s[k] = s[k-1]
+			}
+			s[j] = temp
+		}
+	}
 }
 
 func main() {
@@ -30,5 +49,4 @@ func main() {
 	fmt.Println(s)
 	bubblesort(s)
 	fmt.Println(s)
-
 }
