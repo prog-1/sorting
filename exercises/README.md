@@ -1,8 +1,10 @@
 # Exercises
 
-## Tasks
+## Useful links
 
 Algorithm visualization https://visualgo.net/en/sorting
+
+## Tasks
 
 1. Insertion sort (bisect search) https://en.wikipedia.org/wiki/Insertion_sort
 2. Selection sort https://en.wikipedia.org/wiki/Selection_sort
