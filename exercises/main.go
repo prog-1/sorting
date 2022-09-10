@@ -19,8 +19,7 @@ func selection(s []int) {
 	}
 }
 func reverseIns(s []int) {
-	l := len(s)
-	for i := l - 2; i >= 0; i-- {
+	for i := len(s) - 2; i >= 0; i-- {
 		for j := i; j < len(s)-1; j++ {
 			if s[j+1] < s[j] {
 				s[j+1], s[j] = s[j], s[j+1]
