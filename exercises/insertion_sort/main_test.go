@@ -75,13 +75,16 @@ var (
 )
 
 func BenchmarkSort(b *testing.B) {
+	s2 := make([]int, len(s))
 	for n := 0; n < b.N; n++ {
+		copy(s2, s)
 		Sort(s)
 	}
 }
-
 func BenchmarkSort2(b *testing.B) {
+	s2 := make([]int, len(s))
 	for n := 0; n < b.N; n++ {
+		copy(s2, s)
 		Sort2(s)
 	}
 }
