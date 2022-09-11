@@ -1,9 +1,21 @@
 package main
 
 import (
+	"math/rand"
 	"reflect"
 	"testing"
+	"time"
 )
+
+var input []int
+
+func init() {
+	rand.Seed(time.Now().UnixNano())
+	input = make([]int, 10_000)
+	for i := range input {
+		input[i] = rand.Intn(1_000)
+	}
+}
 
 func TestInsertionSortBisectSearch(t *testing.T) {
 	for _, tc := range []struct {
@@ -30,26 +42,10 @@ func TestInsertionSortBisectSearch(t *testing.T) {
 }
 
 func BenchmarkInsertionSortBisectSearch(b *testing.B) {
-	for _, bm := range []struct {
-		name string
-		s    []int
-		want []int
-	}{
-		{"case-1", nil, nil},
-		{"case-2", []int{0}, []int{0}},
-		{"case-3", []int{1, 2, 3}, []int{1, 2, 3}},
-		{"case-4", []int{3, 2, 1}, []int{1, 2, 3}},
-		{"case-5", []int{2, 1, 3}, []int{1, 2, 3}},
-		{"case-6", []int{2, 1, 4, 3}, []int{1, 2, 3, 4}},
-		{"case-7", []int{-1, 3, 2, 4, 2, -1}, []int{-1, -1, 2, 2, 3, 4}},
-		{"case-8", []int{-4, 2, 1, -3, 2, 1, 3}, []int{-4, -3, 1, 1, 2, 2, 3}},
-		{"case-9", []int{4, 2, 1, 3, 2, -1, 4}, []int{-1, 1, 2, 2, 3, 4, 4}},
-	} {
-		b.Run(bm.name, func(b *testing.B) {
-			for i := 0; i < b.N; i++ {
-				insertionSortBisectSearch(bm.s)
-			}
-		})
+	s := make([]int, len(input))
+	for n := 0; n < b.N; n++ {
+		copy(s, input)
+		insertionSortBisectSearch(s)
 	}
 }
 
@@ -78,26 +74,10 @@ func TestSelectionSort(t *testing.T) {
 }
 
 func BenchmarkSelectionSort(b *testing.B) {
-	for _, bm := range []struct {
-		name string
-		s    []int
-		want []int
-	}{
-		{"case-1", nil, nil},
-		{"case-2", []int{0}, []int{0}},
-		{"case-3", []int{1, 2, 3}, []int{1, 2, 3}},
-		{"case-4", []int{3, 2, 1}, []int{1, 2, 3}},
-		{"case-5", []int{2, 1, 3}, []int{1, 2, 3}},
-		{"case-6", []int{2, 1, 4, 3}, []int{1, 2, 3, 4}},
-		{"case-7", []int{-1, 3, 2, 4, 2, -1}, []int{-1, -1, 2, 2, 3, 4}},
-		{"case-8", []int{-4, 2, 1, -3, 2, 1, 3}, []int{-4, -3, 1, 1, 2, 2, 3}},
-		{"case-9", []int{4, 2, 1, 3, 2, -1, 4}, []int{-1, 1, 2, 2, 3, 4, 4}},
-	} {
-		b.Run(bm.name, func(b *testing.B) {
-			for i := 0; i < b.N; i++ {
-				selectionSort(bm.s)
-			}
-		})
+	s := make([]int, len(input))
+	for n := 0; n < b.N; n++ {
+		copy(s, input)
+		selectionSort(s)
 	}
 }
 
@@ -126,25 +106,9 @@ func TestInsertionSortLinearSearch(t *testing.T) {
 }
 
 func BenchmarkInsertionSortLinearSearch(b *testing.B) {
-	for _, bm := range []struct {
-		name string
-		s    []int
-		want []int
-	}{
-		{"case-1", nil, nil},
-		{"case-2", []int{0}, []int{0}},
-		{"case-3", []int{1, 2, 3}, []int{1, 2, 3}},
-		{"case-4", []int{3, 2, 1}, []int{1, 2, 3}},
-		{"case-5", []int{2, 1, 3}, []int{1, 2, 3}},
-		{"case-6", []int{2, 1, 4, 3}, []int{1, 2, 3, 4}},
-		{"case-7", []int{-1, 3, 2, 4, 2, -1}, []int{-1, -1, 2, 2, 3, 4}},
-		{"case-8", []int{-4, 2, 1, -3, 2, 1, 3}, []int{-4, -3, 1, 1, 2, 2, 3}},
-		{"case-9", []int{4, 2, 1, 3, 2, -1, 4}, []int{-1, 1, 2, 2, 3, 4, 4}},
-	} {
-		b.Run(bm.name, func(b *testing.B) {
-			for i := 0; i < b.N; i++ {
-				insertionSortLinearSearch(bm.s)
-			}
-		})
+	s := make([]int, len(input))
+	for n := 0; n < b.N; n++ {
+		copy(s, input)
+		insertionSortLinearSearch(s)
 	}
 }
