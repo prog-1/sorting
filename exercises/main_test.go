@@ -23,3 +23,11 @@ func BenchmarkSelectionSortRandom(b *testing.B) {
 		selectionSort(s)
 	}
 }
+
+func BenchmarkInsetionSortRandom(b *testing.B) {
+	s := make([]int, len(input))
+	for n := 0; n < b.N; n++ {
+		copy(s, input)
+		insertionSort(s)
+	}
+}
