@@ -7,19 +7,21 @@ import (
 )
 
 func Bsearch(x []int, b int) int {
+	var mid int
 	low, high := 0, len(x)-1
-	for low < high {
-		mid := (low + high) / 2
+	for low <= high {
+		mid = (low + high) / 2
 		if x[mid] == b {
 			return mid
 		}
-		if x[mid] > b {
+		if b > x[mid] {
 			low = mid + 1
-		} else {
+		}
+		if b < x[mid] {
 			high = mid - 1
 		}
 	}
-	return low
+	return mid
 }
 
 func Binsertion(x []int) {
