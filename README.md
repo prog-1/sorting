@@ -1,19 +1,20 @@
-# Sorting
+# Exercises
 
-## Basic sorting algorithms
+## Useful links
 
-* https://en.wikipedia.org/wiki/Bubble_sort
-* https://en.wikipedia.org/wiki/Insertion_sort
-* https://en.wikipedia.org/wiki/Selection_sort
+Algorithm visualization https://visualgo.net/en/sorting
 
-## Benchmarking
+## Tasks
 
-* https://pkg.go.dev/testing#hdr-Benchmarks
-* https://gobyexample.com/testing-and-benchmarking
-* https://go.dev/blog/subtests
+1. Insertion sort (bisect search) https://en.wikipedia.org/wiki/Insertion_sort
+2. Selection sort https://en.wikipedia.org/wiki/Selection_sort
 
-## Some extras
+## Extras
 
-* https://en.wikipedia.org/wiki/Radix_sort
-* https://en.wikipedia.org/wiki/Merge_sort
-* https://en.wikipedia.org/wiki/Quicksort
+1. +10% Insertion sort (optimized linear search). Here we expect that instead
+   of traversing the slice from left to right, you do it from right to left,
+   swapping elements while `s[i] < s[j]`.
+2. +50% Add benchmarks for every sort algorithm. Check the [benchmarking]
+   section for tutorials and other useful info.
+
+[benchmarking]: https://github.com/prog-1/sorting#benchmarking
