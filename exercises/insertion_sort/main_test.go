@@ -1,7 +1,9 @@
 package main
 
 import (
+	"math/rand"
 	"testing"
+	"time"
 )
 
 func TestSort(t *testing.T) {
@@ -70,10 +72,15 @@ func equal(a, b []int) bool {
 	return true
 }
 
-var (
-	s = []int{11, 10, -20, 100000000, -1, 0, 0, 7, 35, 88, 10, 200, 99, 2, 3, 2, 8, 29, -68, 92, 93, 77, -41, -45, -62, 82, 40, 72, 71, -82, 56, -92, -22, 41, 60, 93, 47, -14, -88, 37, 76, -72, -75, -65, -83, 52, 14, -35}
-)
+var s []int
 
+func init() {
+	rand.Seed(time.Now().UnixNano())
+	s = make([]int, 50_000)
+	for i := range s {
+		s[i] = rand.Intn(1_000)
+	}
+}
 func BenchmarkSort(b *testing.B) {
 	s2 := make([]int, len(s))
 	for n := 0; n < b.N; n++ {
@@ -81,6 +88,7 @@ func BenchmarkSort(b *testing.B) {
 		Sort(s)
 	}
 }
+
 func BenchmarkSort2(b *testing.B) {
 	s2 := make([]int, len(s))
 	for n := 0; n < b.N; n++ {
