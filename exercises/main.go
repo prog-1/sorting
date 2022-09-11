@@ -11,11 +11,13 @@ func insertion(s []int) {
 }
 func selection(s []int) {
 	for i := 0; i < len(s); i++ {
-		for j, min := i+1, i; j < len(s); j++ {
+		min := i
+		for j := i + 1; j < len(s); j++ {
 			if s[j] < s[min] {
-				s[j], s[min] = s[min], s[j]
+				min = j
 			}
 		}
+		s[i], s[min] = s[min], s[i]
 	}
 }
 func reverseIns(s []int) {
