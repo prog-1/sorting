@@ -1,8 +1,10 @@
 package main
 
 import (
+	"math/rand"
 	"reflect"
 	"testing"
+	"time"
 )
 
 func TestInsertion(t *testing.T) {
@@ -80,7 +82,15 @@ func TestReverseIns(t *testing.T) {
 	}
 }
 
-var input = []int{3, 4, 5, 2, 1, 7, 8, -1, -3, 7, 7, -10, 27, 12, 123, 123, 23, 123, 21, 3, -2341}
+var input []int
+
+func init() {
+	rand.Seed(time.Now().UnixNano())
+	input = make([]int, 10_000)
+	for i := range input {
+		input[i] = rand.Intn(1_000)
+	}
+}
 
 func BenchmarkInsertion(b *testing.B) {
 	s := make([]int, len(input))
