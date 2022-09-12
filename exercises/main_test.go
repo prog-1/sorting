@@ -23,6 +23,24 @@ func TestInsertion(t *testing.T) {
 		})
 	}
 }
+func TestInsertionBisect(t *testing.T) {
+	for _, tc := range []struct {
+		s    []int
+		want []int
+	}{
+		{[]int{3, 4, 5, 2, 1}, []int{1, 2, 3, 4, 5}},
+		{nil, nil},
+		{[]int{1}, []int{1}},
+		{[]int{-1, -2, -10, -3}, []int{-10, -3, -2, -1}},
+		{[]int{3, 4, 5, 2, 1, 7, 8, -1, -3}, []int{-3, -1, 1, 2, 3, 4, 5, 7, 8}},
+	} {
+		t.Run("", func(t *testing.T) {
+			if insertionBisect(tc.s); !reflect.DeepEqual(tc.s, tc.want) {
+				t.Errorf("got = %v, want = %v", tc.s, tc.want)
+			}
+		})
+	}
+}
 
 func TestSelection(t *testing.T) {
 	for _, tc := range []struct {
@@ -69,6 +87,13 @@ func BenchmarkInsertion(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		copy(s, input)
 		insertion(s)
+	}
+}
+func BenchmarkBisect(b *testing.B) {
+	s := make([]int, len(input))
+	for i := 0; i < b.N; i++ {
+		copy(s, input)
+		insertionBisect(s)
 	}
 }
 

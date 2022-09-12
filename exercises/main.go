@@ -9,6 +9,21 @@ func insertion(s []int) {
 		}
 	}
 }
+func insertionBisect(s []int) {
+	for i := 1; i < len(s); i++ {
+		x, j, k := s[i], 0, i
+		for j != k {
+			m := (j + k) / 2
+			if s[m] <= x {
+				j = m + 1
+			} else {
+				k = m
+			}
+		}
+		copy(s[j+1:], s[j:i])
+		s[j] = x
+	}
+}
 func selection(s []int) {
 	for i := 0; i < len(s); i++ {
 		min := i
